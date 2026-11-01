@@ -1,6 +1,9 @@
 MEDIA_STATUS_CHOICES = (
-    ('PLAN','Plan'),
-    ('WATCHING','Watching'),
-    ('COMPLETED','Completed'),
-    ('DROPPED','Dropped'),
+    ('Released','released'),
+    ('ongoing','ongoing'),
+)
+
+ANIME_TYPE_CHOICES = (
+    ('Multi','Multi'),
+    ('Feature','Feature'),
 )

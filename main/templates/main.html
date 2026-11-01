@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Головна — WhatToWatch{% endblock %}
+
+{% block content %}
+<main class="container">
+
+    <!-- Банер -->
+    <section class="welcome">
+        <p class="eyebrow">YOUR PERSONAL MEDIA SPACE</p>
+        <h1>Твоя колекція.<br><span>Твои правила.</span></h1>
+        <p class="welcome-text">
+            Фильмы, сериалы и аниме, которые стоит посмотреть.
+        </p>
+    </section>
+
+    <!-- ФІЛЬМИ -->
+    <section class="media-section" id="movies">
+        <div class="section-header">
+            <div>
+                <p class="section-label">01 / COLLECTION</p>
+                <h2>Фільми</h2>
+            </div>
+            <a href="#" class="view-all">All movies</a>
+        </div>
+        <div class="media-scroll-container">
+            {% for movie in Movies %}
+                <div class="media-item-card">
+                    <div class="media-card">
+                        {% if movie.cover_image %}
+                            <img src="{{ movie.cover_image.url }}" class="media-poster" alt="{{ item.title }}">
+                        {% else %}
+                            <div class="media-poster-placeholder">
+                                <i class="bi bi-image"></i>
+                            </div>
+                        {% endif %}
+                        <div class="media-card-body">
+                            <h5 class="media-title" title="{{ item.title }}">{{ movie.title }}</h5>
+                            <span class="media-year">{{ movie.year }}</span>
+                            <a href="#" class="media-btn">Детальніше</a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <p class="empty-text">Фільмів поки немає.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- СЕРІАЛИ -->
+    <section class="media-section" id="series">
+        <div class="section-header">
+            <div>
+                <p class="section-label">02 / COLLECTION</p>
+                <h2>Серіали</h2>
+            </div>
+            <a href="#" class="view-all">Всі серіали</a>
+        </div>
+        <div class="media-scroll-container">
+            {% for series in Series %}
+                <div class="media-item-card">
+                    <div class="media-card">
+                        {% if series.cover_image %}
+                            <img src="{{ series.cover_image.url }}" class="media-poster" alt="{{ item.title }}">
+                        {% else %}
+                            <div class="media-poster-placeholder">
+                                <i class="bi bi-image"></i>
+                            </div>
+                        {% endif %}
+                        <div class="media-card-body">
+                            <h5 class="media-title" title="{{ series.title }}">{{ series.title }}</h5>
+                            <span class="media-year">{{ series.year }}</span>
+                            <a href="#" class="media-btn">Детальніше</a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <p class="empty-text">Серіалів поки немає.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- АНІМЕ -->
+    <section class="media-section" id="anime">
+        <div class="section-header">
+            <div>
+                <p class="section-label">03 / COLLECTION</p>
+                <h2>Аніме</h2>
+            </div>
+            <a href="#" class="view-all">Все аніме</a>
+        </div>
+        <div class="media-scroll-container">
+            {% for item in Anime %}
+                <div class="media-item-card">
+                    <div class="media-card">
+                        {% if item.poster %}
+                            <img src="{{ item.poster.url }}" class="media-poster" alt="{{ item.title }}">
+                        {% else %}
+                            <div class="media-poster-placeholder">
+                                <i class="bi bi-image"></i>
+                            </div>
+                        {% endif %}
+                        <div class="media-card-body">
+                            <h5 class="media-title" title="{{ item.title }}">{{ item.title }}</h5>
+                            <span class="media-year">{{ item.year }}</span>
+                            <a href="#" class="media-btn">Детальніше</a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <p class="empty-text">Аніме поки немає.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- ВИПАДКОВІ РЕКОМЕНДАЦІЇ -->
+    <section class="media-section" id="random">
+        <div class="section-header">
+            <div>
+                <p class="section-label">04 / RECOMMENDATIONS</p>
+                <h2>Випадкові рекомендації</h2>
+            </div>
+        </div>
+        <div class="media-grid">
+            {% for media in random_media %}
+                <div class="media-card">
+                    {% if media.cover_image %}
+                        <img src="{{ media.cover_image.url }}" class="media-poster" alt="{{ media.title }}">
+                    {% else %}
+                        <div class="media-poster-placeholder">
+                            <i class="bi bi-image"></i>
+                        </div>
+                    {% endif %}
+                    <div class="media-card-body">
+                        <h5 class="media-title" title="{{ item.title }}">{{ media.title }}</h5>
+                        <span class="media-year">{{ media.year }}</span>
+                        <a href="#" class="media-btn">Детальніше</a>
+                    </div>
+                </div>
+            {% empty %}
+                <p class="empty-text">У базі поки немає жодного запису.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+</main>
+{% endblock %}

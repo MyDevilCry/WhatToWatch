@@ -1,10 +1,13 @@
+from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 
-from main.models import BaseModel, MediaManager
+from config.choices import ANIME_TYPE_CHOICES
+from main.models import BaseModel, MediaManager, Season
 
 
 class Series(BaseModel):
-    episodes_count = models.PositiveIntegerField(verbose_name="Кількість серій", blank=True, null=True)
+    seasons = GenericRelation(Season, related_query_name='series_set')
+
 
     objects = MediaManager()
 
@@ -17,8 +20,9 @@ class Series(BaseModel):
 
 
 class Anime(BaseModel):
-    episodes_count = models.PositiveIntegerField(verbose_name="Кількість серій",blank=True,null=True)
-    studio = models.CharField(max_length=255, verbose_name="Студія", blank=True, null=True)
+    anime_type = models.CharField(max_length=20, choices=ANIME_TYPE_CHOICES,default='Multi', verbose_name="Anime type")
+    seasons = GenericRelation(Season, related_query_name='anime_set')
+    studio = models.CharField(max_length=255, verbose_name="Studio", blank=True, null=True)
 
     objects = MediaManager()
 

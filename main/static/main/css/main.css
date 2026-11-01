@@ -1,0 +1,223 @@
+/* Базові стилі */
+body {
+    background-color: #0f0f12;
+    color: #e1e1e6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding-bottom: 50px;
+}
+
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* Вітальна секція (Welcome) */
+.welcome {
+    background: linear-gradient(135deg, #18181c 0%, #22222b 100%);
+    border: 1px solid #282830;
+    border-radius: 16px;
+    padding: 50px;
+    margin-bottom: 50px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.eyebrow {
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    color: #a29bfe;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.welcome h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.2;
+    margin-bottom: 15px;
+}
+
+.welcome h1 span {
+    color: #6c5ce7;
+}
+
+.welcome-text {
+    font-size: 1.1rem;
+    color: #a0a0ab;
+    margin: 0;
+}
+
+/* Шапка секції (заголовок + кнопка "Всі") */
+.media-section {
+    margin-bottom: 50px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 20px;
+}
+
+.section-label {
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+    color: #71717a;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.section-header h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+}
+
+.view-all {
+    color: #a29bfe;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.view-all:hover {
+    color: #6c5ce7;
+    text-decoration: underline;
+}
+
+/* Горизонтальна прокрутка */
+.media-scroll-container {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding-bottom: 15px;
+}
+
+.media-scroll-container::-webkit-scrollbar {
+    height: 6px;
+}
+
+.media-scroll-container::-webkit-scrollbar-track {
+    background: #18181c;
+    border-radius: 4px;
+}
+
+.media-scroll-container::-webkit-scrollbar-thumb {
+    background: #3f3f4e;
+    border-radius: 4px;
+}
+
+.media-scroll-container::-webkit-scrollbar-thumb:hover {
+    background: #6c5ce7;
+}
+
+.media-scroll-container > .media-item-card {
+    flex: 0 0 200px;
+    width: 200px;
+}
+
+/* Сітка для рандомних рекомендацій */
+.media-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+/* Картка медіа */
+.media-card {
+    background-color: #18181c;
+    border: 1px solid #282830;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.media-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.7);
+    border-color: #6c5ce7;
+}
+
+/* Постер */
+.media-poster {
+    height: 270px;
+    width: 100%;
+    object-fit: cover;
+    background-color: #121215;
+}
+
+.media-poster-placeholder {
+    height: 270px;
+    width: 100%;
+    background-color: #121215;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #484856;
+    font-size: 2rem;
+}
+
+/* Вміст картки */
+.media-card-body {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+.media-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 8px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.media-year {
+    display: inline-block;
+    background-color: #2b2b36;
+    color: #a0a0ab;
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    width: max-content;
+    margin-bottom: 10px;
+}
+
+/* Кнопка на картці */
+.media-btn {
+    display: block;
+    text-align: center;
+    background-color: transparent;
+    border: 1px solid #3f3f4e;
+    color: #e1e1e6;
+    padding: 6px 0;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.media-btn:hover {
+    background-color: #6c5ce7;
+    border-color: #6c5ce7;
+    color: #ffffff;
+}
+
+.empty-text {
+    color: #71717a;
+    font-size: 1rem;
+    margin: 0;
+}

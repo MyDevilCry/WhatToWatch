@@ -77,8 +77,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'WhatToWatch_db',      # Назва твоєї бази даних у PostgreSQL
+        'USER': 'postgres',           # Твоє ім'я користувача (за замовчуванням postgres)
+        'PASSWORD': 'postgres_password',      # Пароль, який ти вказувала при встановленні Postgres
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
@@ -128,5 +132,12 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+STATICFILES_DIRS = [
+    BASE_DIR / "main" / "static",
+]
 
 AUTH_USER_MODEL = 'user.User'
