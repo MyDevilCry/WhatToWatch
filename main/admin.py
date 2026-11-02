@@ -58,4 +58,4 @@ class AnimeAdmin(admin.ModelAdmin):
     autocomplete_fields = ("genre",)
 
     class Media:
-        js = ('admin/js/anime_toggle.js',)
+        js = ('js/anime_toggle.js',)
