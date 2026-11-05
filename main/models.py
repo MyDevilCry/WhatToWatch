@@ -6,7 +6,6 @@ from django.contrib.contenttypes.models import ContentType
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
-from config.choices import MEDIA_STATUS_CHOICES
 
 
 def media_cover_path(instance, filename):
@@ -26,8 +25,10 @@ class Genre(models.Model):
     name = models.CharField(max_length=100,unique=True,db_index=True,verbose_name="Назва жанру")
     slug = models.SlugField(max_length=250, unique=True, db_index=True)
 
+
     def __str__(self):
         return self.name
+
 
 class Country(models.Model):
     name = models.CharField(max_length=100,unique=True,db_index=True,verbose_name="Назва країни")
@@ -36,9 +37,9 @@ class Country(models.Model):
     def __str__(self):
         return self.name
 
+
+
 class BaseModel(models.Model):
-    status = models.CharField(max_length=20, choices=MEDIA_STATUS_CHOICES, default='Plan',
-                              verbose_name='Viewing Status')
     slug = models.SlugField(max_length=250, unique=True, db_index=True)
     title = models.CharField(
         max_length=100, verbose_name="Назва", db_index=True

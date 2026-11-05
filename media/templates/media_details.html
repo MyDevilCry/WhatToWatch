@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main class="container media-detail-page">
+    <div class="media-detail-wrapper">
+
+        <!-- Ліва колонка: Постер або заглушка -->
+        <div class="media-poster-container">
+            {% if media.cover_image %}
+                <img src="{{ media.cover_image.url }}" alt="{{ media.title }}" class="media-poster-img">
+            {% else %}
+                <div class="media-poster-placeholder">
+                    <i class="bi bi-image"></i>
+                </div>
+            {% endif %}
+
+        </div>
+
+        <!-- Права колонка: Інформація про медіа -->
+        <div class="media-info-body">
+            <h1 class="media-detail-title">{{ media.title }}</h1>
+
+            <div class="media-meta">
+                <span class="media-year-badge">{{ media.year }}</span>
+                {% if media.anime_type %}
+                    <span class="media-type-badge">{{ media.get_anime_display_type|default:media.anime_type }}</span>
+                {% endif %}
+            </div>
+
+            <div class="media-additional-info">
+                {% if media.studio %}
+                    <p><strong>Студія:</strong> {{ media.studio }}</p>
+                {% endif %}
+
+                <p><strong>Жанри:</strong>
+                    {% for genre in media.genre.all %}
+                        <span class="genre-tag">{{ genre.name }}</span>
+                    {% empty %}
+                        Не вказано
+                    {% endfor %}
+                </p>
+            </div>
+
+            {% if media.description %}
+                <div class="media-description-block">
+                    <h3>Опис</h3>
+                    <p class="media-description-text">{{ media.description }}</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Блок сезонів (якщо вони є) -->
+    {% if media.seasons.all %}
+        <section class="media-section seasons-section">
+            <div class="section-header">
+                <h2>Сезони</h2>
+            </div>
+            <div class="seasons-list">
+                {% for season in media.seasons.all %}
+                    <div class="season-item">
+                        <span class="season-number">Сезон №{{ season.season_number }}</span>
+                        <span class="season-episodes">Кількість серій: {{ season.episodes_count }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    {% endif %}
+
+</main>
+{% endblock %}

@@ -2,7 +2,7 @@ import random
 
 from django.views.generic import TemplateView
 
-from Media.models import Anime, Movie, Series
+from media.models import Anime, Movie, Series
 
 
 class MainView(TemplateView):

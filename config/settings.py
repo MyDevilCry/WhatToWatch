@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Media',
+    'media',
     'main',
     'user',
 ]
@@ -78,9 +78,9 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'WhatToWatch_db',      # Назва твоєї бази даних у PostgreSQL
-        'USER': 'postgres',           # Твоє ім'я користувача (за замовчуванням postgres)
-        'PASSWORD': 'postgres_password',      # Пароль, який ти вказувала при встановленні Postgres
+        'NAME': 'WhatToWatch_db',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres_password',
         'HOST': 'localhost',
         'PORT': '5432',
     }

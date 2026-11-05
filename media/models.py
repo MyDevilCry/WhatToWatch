@@ -1,11 +1,13 @@
 from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 
-from config.choices import ANIME_TYPE_CHOICES
+from config.choices import ANIME_TYPE_CHOICES, MEDIA_STATUS_CHOICES
 from main.models import BaseModel, MediaManager, Season
 
 
 class Series(BaseModel):
+    status = models.CharField(max_length=20, choices=MEDIA_STATUS_CHOICES, default='released',
+                              verbose_name='Viewing Status')
     seasons = GenericRelation(Season, related_query_name='series_set')
 
 
@@ -20,6 +22,8 @@ class Series(BaseModel):
 
 
 class Anime(BaseModel):
+    status = models.CharField(max_length=20, choices=MEDIA_STATUS_CHOICES, default='released',
+                              verbose_name='Viewing Status')
     anime_type = models.CharField(max_length=20, choices=ANIME_TYPE_CHOICES,default='Multi', verbose_name="Anime type")
     seasons = GenericRelation(Season, related_query_name='anime_set')
     studio = models.CharField(max_length=255, verbose_name="Studio", blank=True, null=True)
@@ -47,4 +51,4 @@ class Movie(BaseModel):
         ]
 
     def __str__(self):
-        return f"{self.title}({self.get_status_display()})"
+        return self.title

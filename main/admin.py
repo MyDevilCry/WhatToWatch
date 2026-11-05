@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.contrib.contenttypes.admin import GenericTabularInline
 
 from main.models import Genre, Season, Country
-from Media.models import Anime, Movie, Series
+from media.models import Anime, Movie, Series
 
 class SeasonInLine(GenericTabularInline):
     model = Season
@@ -15,10 +15,13 @@ class SeasonInLine(GenericTabularInline):
 @admin.register(Genre)
 class GenreAdmin(admin.ModelAdmin):
     search_fields = ("name",)
+    prepopulated_fields = {"slug": ("name",)}
 
 @admin.register(Country)
 class CountryAdmin(admin.ModelAdmin):
     list_display = ("name",)
+    prepopulated_fields = {"slug": ("name",)}
+
 
 @admin.register(Series)
 class SeriesAdmin(admin.ModelAdmin):

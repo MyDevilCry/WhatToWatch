@@ -37,7 +37,7 @@
                         <div class="media-card-body">
                             <h5 class="media-title" title="{{ item.title }}">{{ movie.title }}</h5>
                             <span class="media-year">{{ movie.year }}</span>
-                            <a href="#" class="media-btn">Детальніше</a>
+                            <a href="{% url 'media:media_details' movie.slug %}" class="media-btn">Детальніше</a>
                         </div>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
                         <div class="media-card-body">
                             <h5 class="media-title" title="{{ series.title }}">{{ series.title }}</h5>
                             <span class="media-year">{{ series.year }}</span>
-                            <a href="#" class="media-btn">Детальніше</a>
+                            <a href="{% url 'media:media_details' series.slug %}" class="media-btn">Детальніше</a>
                         </div>
                     </div>
                 </div>
@@ -90,20 +90,20 @@
             <a href="#" class="view-all">Все аніме</a>
         </div>
         <div class="media-scroll-container">
-            {% for item in Anime %}
+            {% for anime in Anime %}
                 <div class="media-item-card">
                     <div class="media-card">
-                        {% if item.poster %}
-                            <img src="{{ item.poster.url }}" class="media-poster" alt="{{ item.title }}">
+                        {% if anime.cover_image %}
+                            <img src="{{ anime.cover_image.url }}" class="media-poster" alt="{{ item.title }}">
                         {% else %}
                             <div class="media-poster-placeholder">
                                 <i class="bi bi-image"></i>
                             </div>
                         {% endif %}
                         <div class="media-card-body">
-                            <h5 class="media-title" title="{{ item.title }}">{{ item.title }}</h5>
-                            <span class="media-year">{{ item.year }}</span>
-                            <a href="#" class="media-btn">Детальніше</a>
+                            <h5 class="media-title" title="{{ anime.title }}">{{ anime.title }}</h5>
+                            <span class="media-year">{{ anime.year }}</span>
+                            <a href=" {%url 'media:media_details' anime.slug %}" class="media-btn">Детальніше</a>
                         </div>
                     </div>
                 </div>
@@ -134,7 +134,7 @@
                     <div class="media-card-body">
                         <h5 class="media-title" title="{{ item.title }}">{{ media.title }}</h5>
                         <span class="media-year">{{ media.year }}</span>
-                        <a href="#" class="media-btn">Детальніше</a>
+                        <a href="{% url 'media:media_details' media.slug %}" class="media-btn">Детальніше</a>
                     </div>
                 </div>
             {% empty %}
