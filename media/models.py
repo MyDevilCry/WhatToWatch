@@ -3,6 +3,7 @@ from django.db import models
 
 from config.choices import ANIME_TYPE_CHOICES, MEDIA_STATUS_CHOICES
 from main.models import BaseModel, MediaManager, Season
+from main.services import fetch_movie_data_from_tmdb, fetch_anime_data_from_kitsu
 
 
 class Series(BaseModel):
@@ -34,8 +35,16 @@ class Anime(BaseModel):
         verbose_name = "Anime"
         verbose_name_plural = "Anime"
 
+    def save(self, *args, **kwargs):
+        if not self.description:
+            api_data = fetch_anime_data_from_kitsu(self.title)
+            if api_data and api_data.get("description"):
+                self.description = api_data["description"]
+
+        super().save(*args, **kwargs)
+
     def __str__(self):
-        return f"{self.title}({self.get_status_display()})"
+        return self.title
 
 
 class Movie(BaseModel):
@@ -49,6 +58,15 @@ class Movie(BaseModel):
         indexes = [
             models.Index(fields=["title", "year"]),
         ]
+
+
+    def save(self, *args, **kwargs):
+        if not self.description:
+            api_data = fetch_movie_data_from_tmdb(self.title)
+            if api_data and api_data.get("description"):
+                self.description = api_data["description"]
+
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title

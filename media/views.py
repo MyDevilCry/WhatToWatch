@@ -1,5 +1,6 @@
 from django.http import Http404
 from django.views.generic import DetailView
+
 from media.models import Anime, Movie, Series
 
 
@@ -16,6 +17,8 @@ class MediaDetailsView(DetailView):
             if obj:
                 return obj
         raise Http404("media not found.")
+
+
 
 
 
